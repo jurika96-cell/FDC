@@ -5,17 +5,15 @@ if (isNull _display) exitWith {};
 private _missionType = missionNamespace getVariable ["FDC_missionType", "Beloves"];
 private _labels = [9220,9221,9222,9223,9224,9225];
 private _edits = [9230,9231,9232,9233,9234,9235];
+private _lrCombo = _display displayCtrl 9240;
+private _nfCombo = _display displayCtrl 9241;
+_lrCombo ctrlShow false;
+_nfCombo ctrlShow false;
 
 private _texts = switch (_missionType) do {
-    case "Beloves polarisan": {
-        ["Iranyszog (mils):","Tavolsag (m):","Magassag (m):","","",""]
-    };
-    case "Tuzathelyezes ismert pontrol": {
-        ["Ismert pont Y:","Ismert pont X:","Magassag (m):","Jobbra/Balra (m):","Kozelebb/Tavolabb (m):",""]
-    };
-    default {
-        ["Y koordinata:","X koordinata:","Magassag (m):","Iranyszog (mils):","",""]
-    };
+    case "Beloves polarisan": { ["Iranyszog (mils):","Tavolsag (m):","Magassag (m):","","",""] };
+    case "Tuzathelyezes ismert pontrol": { ["Ismert pont Y:","Ismert pont X:","Magassag (m):","Oldaliranyu elteres (m):","Tavolsagi elteres (m):",""] };
+    default { ["Y koordinata:","X koordinata:","Magassag (m):","Iranyszog (mils):","",""] };
 };
 
 for "_i" from 0 to 5 do {
@@ -26,4 +24,14 @@ for "_i" from 0 to 5 do {
     private _show = _text != "";
     _label ctrlShow _show;
     _edit ctrlShow _show;
+};
+
+if (_missionType isEqualTo "Tuzathelyezes ismert pontrol") then {
+    _lrCombo ctrlShow true;
+    _nfCombo ctrlShow true;
+    (_display displayCtrl 9233) ctrlSetPosition [0.56,0.48,0.19,0.045]; (_display displayCtrl 9233) ctrlCommit 0;
+    (_display displayCtrl 9234) ctrlSetPosition [0.56,0.54,0.19,0.045]; (_display displayCtrl 9234) ctrlCommit 0;
+} else {
+    (_display displayCtrl 9233) ctrlSetPosition [0.43,0.48,0.32,0.045]; (_display displayCtrl 9233) ctrlCommit 0;
+    (_display displayCtrl 9234) ctrlSetPosition [0.43,0.54,0.32,0.045]; (_display displayCtrl 9234) ctrlCommit 0;
 };
