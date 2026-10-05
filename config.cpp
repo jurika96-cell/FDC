@@ -24,6 +24,15 @@ class CfgFunctions
             class init { postInit = 1; };
             class openContactDialog {};
             class grantAccess {};
+            class initContactDialog {};
+            class saveContact {};
+            class initCoordinateDialog {};
+            class coordinateModeChanged {};
+            class saveCoordinate {};
+            class initTargetDialog {};
+            class saveTarget {};
+            class initMTODialog {};
+            class saveMTO {};
         };
     };
 };
