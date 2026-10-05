@@ -11,6 +11,8 @@ class CfgPatches
     };
 };
 
+#include "dialogs\fdc_dialog.hpp"
+
 class CfgFunctions
 {
     class FDC
@@ -23,6 +25,7 @@ class CfgFunctions
             {
                 postInit = 1;
             };
+            class openContactDialog {};
         };
     };
 };
