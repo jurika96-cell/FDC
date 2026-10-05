@@ -13,4 +13,9 @@ lbClear _combo;
     "Beloves polarisan",
     "Tuzathelyezes ismert pontrol"
 ];
-_combo lbSetCurSel 0;
+private _saved = missionNamespace getVariable ["FDC_missionType", "Beloves"];
+private _idx = 0;
+for "_i" from 0 to ((lbSize _combo) - 1) do {
+    if ((_combo lbText _i) isEqualTo _saved) exitWith { _idx = _i; };
+};
+_combo lbSetCurSel _idx;
