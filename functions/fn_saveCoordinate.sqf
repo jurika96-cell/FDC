@@ -15,3 +15,17 @@ if ((missionNamespace getVariable ["FDC_missionType", ""]) isEqualTo "Tuzathelye
         _nf lbText (lbCurSel _nf)
     ]];
 };
+
+// If this save was followed by navigating back to the contact dialog,
+// repopulate the combo after the new display has actually been created.
+[] spawn {
+    disableSerialization;
+    private _deadline = diag_tickTime + 1;
+    waitUntil {
+        uiSleep 0.01;
+        !isNull (findDisplay 9100) || {diag_tickTime > _deadline}
+    };
+    if (!isNull (findDisplay 9100)) then {
+        [] call FDC_fnc_initContactDialog;
+    };
+};
