@@ -2,7 +2,15 @@ disableSerialization;
 private _display = findDisplay 9100;
 if (isNull _display) exitWith {};
 private _combo = _display displayCtrl 9110;
+lbClear _combo;
 {
     _combo lbAdd _x;
-} forEach ["Beloves", "Hatastuz", "Azonnali lefogas", "Azonnali kodosites"];
+} forEach [
+    "Beloves",
+    "Hatastuz",
+    "Azonnali lefogas",
+    "Azonnali kodosites",
+    "Beloves polarisan",
+    "Tuzathelyezes ismert pontrol"
+];
 _combo lbSetCurSel 0;
