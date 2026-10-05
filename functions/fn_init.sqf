@@ -9,7 +9,7 @@ if (!hasInterface) exitWith {};
         "FDC_Main",
         "FDC",
         "",
-        { hint "FDC"; },
+        { [] call FDC_fnc_openContactDialog; },
         { true }
     ] call ace_interact_menu_fnc_createAction;
 
