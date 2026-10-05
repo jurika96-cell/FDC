@@ -1,0 +1,12 @@
+disableSerialization;
+private _display = findDisplay 9300;
+if (isNull _display) exitWith {};
+private _ammo = _display displayCtrl 9316;
+private _fuze = _display displayCtrl 9317;
+private _trajectory = _display displayCtrl 9318;
+{ _ammo lbAdd _x; } forEach ["HE", "Smoke", "Illumination"];
+{ _fuze lbAdd _x; } forEach ["Impact", "Delay", "Proximity", "Height"];
+{ _trajectory lbAdd _x; } forEach ["Lapos", "Ivelt", "Meredek"];
+_ammo lbSetCurSel 0;
+_fuze lbSetCurSel 0;
+_trajectory lbSetCurSel 0;
