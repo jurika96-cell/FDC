@@ -10,7 +10,7 @@ if (!hasInterface) exitWith {};
         "FDC",
         "",
         { [] call FDC_fnc_openContactDialog; },
-        { true }
+        { player getVariable ["FDC_hasAccess", false] }
     ] call ace_interact_menu_fnc_createAction;
 
     [
