@@ -15,7 +15,7 @@ class FDC_ContactDialog
             y = 0.30;
             w = 0.40;
             h = 0.30;
-            colorBackground[] = {0,0,0,0.85};
+            colorBackground[] = {0,0,0,1};
             colorText[] = {1,1,1,1};
             font = "RobotoCondensed";
             sizeEx = 0.04;
