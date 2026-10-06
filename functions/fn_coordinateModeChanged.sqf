@@ -1,6 +1,6 @@
 disableSerialization;
-private _display = findDisplay 9200;
-if (isNull _display) exitWith {};
+params [["_display", displayNull, [displayNull]]];
+if (isNull _display) exitWith { diag_log "[FDC FIX 20261006-B] coordinateModeChanged: missing display"; };
 
 private _missionType = missionNamespace getVariable ["FDC_missionType", "Beloves"];
 private _labels = [9220,9221,9222,9223,9224,9225];
@@ -11,18 +11,9 @@ _lrCombo ctrlShow false;
 _nfCombo ctrlShow false;
 
 private _texts = switch (_missionType) do {
-    case "Beloves polarisan": { ["Figyelo Y koordinata:","Figyelo X koordinata:","Iranyszog (mils):","Tavolsag (m):","Magassag (m):",""] };
+    case "Beloves polarisan": { ["Figyelo Y:","Figyelo X:","Iranyszog (mils):","Tavolsag (m):","Magassag (m):",""] };
     case "Tuzathelyezes ismert pontrol": { ["Ismert pont Y:","Ismert pont X:","Magassag (m):","Oldaliranyu elteres (m):","Tavolsagi elteres (m):","Iranyszog (mils):"] };
     default { ["Y koordinata:","X koordinata:","Magassag (m):","Iranyszog (mils):","",""] };
-};
-
-// Reset positions every time the dialog is opened. Hidden combo controls share
-// the same rows as edit controls, so stale positions/visibility must not leak
-// between mission types.
-for "_i" from 0 to 5 do {
-    private _edit = _display displayCtrl (_edits select _i);
-    _edit ctrlSetPosition [0.43, 0.30 + (0.06 * _i), 0.32, 0.045];
-    _edit ctrlCommit 0;
 };
 
 for "_i" from 0 to 5 do {
@@ -35,7 +26,6 @@ for "_i" from 0 to 5 do {
     _edit ctrlShow _show;
 };
 
-// Apply the special split rows only for known-point shift.
 if (_missionType isEqualTo "Tuzathelyezes ismert pontrol") then {
     _lrCombo ctrlShow true;
     _nfCombo ctrlShow true;
