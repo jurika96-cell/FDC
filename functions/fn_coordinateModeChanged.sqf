@@ -11,8 +11,8 @@ _lrCombo ctrlShow false;
 _nfCombo ctrlShow false;
 
 private _texts = switch (_missionType) do {
-    case "Beloves polarisan": { ["Iranyszog (mils):","Tavolsag (m):","Magassag (m):","","",""] };
-    case "Tuzathelyezes ismert pontrol": { ["Ismert pont Y:","Ismert pont X:","Magassag (m):","Oldaliranyu elteres (m):","Tavolsagi elteres (m):",""] };
+    case "Beloves polarisan": { ["Figyelo Y koordinata:","Figyelo X koordinata:","Iranyszog (mils):","Tavolsag (m):","Magassag (m):",""] };
+    case "Tuzathelyezes ismert pontrol": { ["Ismert pont Y:","Ismert pont X:","Magassag (m):","Oldaliranyu elteres (m):","Tavolsagi elteres (m):","Iranyszog (mils):"] };
     default { ["Y koordinata:","X koordinata:","Magassag (m):","Iranyszog (mils):","",""] };
 };
 
