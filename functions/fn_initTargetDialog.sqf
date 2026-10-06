@@ -1,6 +1,7 @@
 disableSerialization;
+diag_log format ["[FDC DEBUG 20261006-A] fn_initTargetDialog enter namespace=%1 mission=%2",currentNamespace,missionNamespace getVariable ["FDC_missionType","<unset>"]];
 private _display = findDisplay 9300;
-if (isNull _display) exitWith {};
+if (isNull _display) exitWith { diag_log "[FDC DEBUG 20261006-A] fn_initTargetDialog EXIT displayNull"; };
 private _ammo = _display displayCtrl 9316;
 private _fuze = _display displayCtrl 9317;
 private _trajectory = _display displayCtrl 9318;
@@ -21,3 +22,5 @@ if ((count _saved) >= 9) then {
 } else {
     _ammo lbSetCurSel 0; _fuze lbSetCurSel 0; _trajectory lbSetCurSel 0;
 };
+
+diag_log format ["[FDC DEBUG 20261006-A] fn_initTargetDialog done display=%1 instance=%2 mission=%3 values=%4",_display,_display getVariable ["FDC_debugInstance",-1],missionNamespace getVariable ["FDC_missionType","<unset>"],missionNamespace getVariable ["FDC_locationValues",[]]];

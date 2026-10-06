@@ -1,4 +1,5 @@
 if (!hasInterface) exitWith {};
+diag_log format ["[FDC DEBUG 20261006-A] postInit contactOnLoad=%1",getText (configFile >> "FDC_ContactDialog" >> "onLoad")];
 
 [] spawn
 {

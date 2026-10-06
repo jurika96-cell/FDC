@@ -1,6 +1,7 @@
 disableSerialization;
+diag_log format ["[FDC DEBUG 20261006-A] fn_coordinateModeChanged enter namespace=%1 mission=%2",currentNamespace,missionNamespace getVariable ["FDC_missionType","<unset>"]];
 private _display = findDisplay 9200;
-if (isNull _display) exitWith {};
+if (isNull _display) exitWith { diag_log "[FDC DEBUG 20261006-A] fn_coordinateModeChanged EXIT displayNull"; };
 
 private _missionType = missionNamespace getVariable ["FDC_missionType", "Beloves"];
 private _labels = [9220,9221,9222,9223,9224,9225];
@@ -35,3 +36,6 @@ if (_missionType isEqualTo "Tuzathelyezes ismert pontrol") then {
     (_display displayCtrl 9233) ctrlSetPosition [0.43,0.48,0.32,0.045]; (_display displayCtrl 9233) ctrlCommit 0;
     (_display displayCtrl 9234) ctrlSetPosition [0.43,0.54,0.32,0.045]; (_display displayCtrl 9234) ctrlCommit 0;
 };
+
+diag_log format ["[FDC DEBUG 20261006-A] fn_coordinateModeChanged done display=%1 instance=%2 mission=%3 values=%4",_display,_display getVariable ["FDC_debugInstance",-1],missionNamespace getVariable ["FDC_missionType","<unset>"],missionNamespace getVariable ["FDC_locationValues",[]]];
+{ diag_log format ["[FDC DEBUG 20261006-A] coordinate field idc=%1 text=%2 shown=%3",_x,ctrlText (_display displayCtrl _x),ctrlShown (_display displayCtrl _x)]; } forEach _labels;

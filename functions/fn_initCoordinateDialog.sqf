@@ -1,6 +1,7 @@
 disableSerialization;
+diag_log format ["[FDC DEBUG 20261006-A] fn_initCoordinateDialog enter namespace=%1 mission=%2",currentNamespace,missionNamespace getVariable ["FDC_missionType","<unset>"]];
 private _display = findDisplay 9200;
-if (isNull _display) exitWith {};
+if (isNull _display) exitWith { diag_log "[FDC DEBUG 20261006-A] fn_initCoordinateDialog EXIT displayNull"; };
 
 private _combo = _display displayCtrl 9210;
 private _missionType = missionNamespace getVariable ["FDC_missionType", "Beloves"];
@@ -35,3 +36,5 @@ if ((count _saved) >= 6) then {
         (_display displayCtrl (9230 + _i)) ctrlSetText (_saved select _i);
     };
 };
+
+diag_log format ["[FDC DEBUG 20261006-A] fn_initCoordinateDialog done display=%1 instance=%2 mission=%3 values=%4",_display,_display getVariable ["FDC_debugInstance",-1],missionNamespace getVariable ["FDC_missionType","<unset>"],missionNamespace getVariable ["FDC_locationValues",[]]];
