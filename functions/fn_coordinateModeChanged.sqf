@@ -1,6 +1,6 @@
 disableSerialization;
-private _display = findDisplay 9200;
-if (isNull _display) exitWith {};
+params [["_display", displayNull, [displayNull]]];
+if (isNull _display) exitWith { diag_log "[FDC FIX 20261006-B] coordinateModeChanged: missing display"; };
 
 private _missionType = missionNamespace getVariable ["FDC_missionType", "Beloves"];
 private _labels = [9220,9221,9222,9223,9224,9225];

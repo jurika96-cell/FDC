@@ -1,5 +1,5 @@
 disableSerialization;
-private _display = findDisplay 9400;
+params [["_display", displayNull, [displayNull]]];
 if (isNull _display) exitWith {};
 private _combo = _display displayCtrl 9410;
 private _data = [
