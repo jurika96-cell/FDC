@@ -1,5 +1,5 @@
 disableSerialization;
-private _display = findDisplay 9200;
+params [["_display", displayNull, [displayNull]]];
 if (isNull _display) exitWith {};
 private _combo = _display displayCtrl 9210;
 private _values = [];
@@ -16,16 +16,5 @@ if ((missionNamespace getVariable ["FDC_missionType", ""]) isEqualTo "Tuzathelye
     ]];
 };
 
-// If this save was followed by navigating back to the contact dialog,
-// repopulate the combo after the new display has actually been created.
-[] spawn {
-    disableSerialization;
-    private _deadline = diag_tickTime + 1;
-    waitUntil {
-        uiSleep 0.01;
-        !isNull (findDisplay 9100) || {diag_tickTime > _deadline}
-    };
-    if (!isNull (findDisplay 9100)) then {
-        [] call FDC_fnc_initContactDialog;
-    };
-};
+// Saving must not initialize another display. Its own onLoad handles that.
+diag_log format ["[FDC FIX 20261006-B] saveCoordinate mission=%1 values=%2", missionNamespace getVariable ["FDC_missionType", "<unset>"], _values];

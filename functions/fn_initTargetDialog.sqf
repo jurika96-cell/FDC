@@ -1,6 +1,6 @@
 disableSerialization;
-private _display = findDisplay 9300;
-if (isNull _display) exitWith {};
+params [["_display", displayNull, [displayNull]]];
+if (isNull _display) exitWith { diag_log "[FDC FIX 20261006-B] initTarget: missing display"; };
 private _ammo = _display displayCtrl 9316;
 private _fuze = _display displayCtrl 9317;
 private _trajectory = _display displayCtrl 9318;
