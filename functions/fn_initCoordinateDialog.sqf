@@ -1,6 +1,6 @@
 disableSerialization;
-private _display = findDisplay 9200;
-if (isNull _display) exitWith {};
+params [["_display", displayNull, [displayNull]]];
+if (isNull _display) exitWith { diag_log "[FDC FIX 20261006-B] initCoordinate: missing display"; };
 
 private _combo = _display displayCtrl 9210;
 private _missionType = missionNamespace getVariable ["FDC_missionType", "Beloves"];
@@ -27,7 +27,7 @@ if (_missionType isEqualTo "Tuzathelyezes ismert pontrol") then {
 };
 
 // Apply labels and show only controls required by the selected mission type.
-[] call FDC_fnc_coordinateModeChanged;
+[_display] call FDC_fnc_coordinateModeChanged;
 
 private _saved = missionNamespace getVariable ["FDC_locationValues", []];
 if ((count _saved) >= 6) then {
@@ -35,3 +35,4 @@ if ((count _saved) >= 6) then {
         (_display displayCtrl (9230 + _i)) ctrlSetText (_saved select _i);
     };
 };
+diag_log format ["[FDC FIX 20261006-B] initCoordinate display=%1 instance=%2 mission=%3 mode=%4 values=%5", _display, _display getVariable ["FDC_debugInstance", -1], _missionType, _mode, _saved];
