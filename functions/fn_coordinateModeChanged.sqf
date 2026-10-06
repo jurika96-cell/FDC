@@ -16,6 +16,15 @@ private _texts = switch (_missionType) do {
     default { ["Y koordinata:","X koordinata:","Magassag (m):","Iranyszog (mils):","",""] };
 };
 
+// Reset positions every time the dialog is opened. Hidden combo controls share
+// the same rows as edit controls, so stale positions/visibility must not leak
+// between mission types.
+for "_i" from 0 to 5 do {
+    private _edit = _display displayCtrl (_edits select _i);
+    _edit ctrlSetPosition [0.43, 0.30 + (0.06 * _i), 0.32, 0.045];
+    _edit ctrlCommit 0;
+};
+
 for "_i" from 0 to 5 do {
     private _label = _display displayCtrl (_labels select _i);
     private _edit = _display displayCtrl (_edits select _i);
@@ -26,6 +35,7 @@ for "_i" from 0 to 5 do {
     _edit ctrlShow _show;
 };
 
+// Apply the special split rows only for known-point shift.
 if (_missionType isEqualTo "Tuzathelyezes ismert pontrol") then {
     _lrCombo ctrlShow true;
     _nfCombo ctrlShow true;
