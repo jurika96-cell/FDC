@@ -6,10 +6,10 @@ class FDC_Combo { idc=-1; type=4; style=0x10+0x200; x=0.43; y=0.24; w=0.32; h=0.
 class FDC_Button { idc=-1; type=1; style=2; x=0.62; y=0.80; w=0.14; h=0.05; text="Tovabb"; font="RobotoCondensed"; sizeEx=0.032; colorText[]={1,1,1,1}; colorDisabled[]={0.4,0.4,0.4,1}; colorBackground[]={0.2,0.2,0.2,1}; colorBackgroundDisabled[]={0.1,0.1,0.1,1}; colorBackgroundActive[]={0.3,0.3,0.3,1}; colorFocused[]={0.3,0.3,0.3,1}; colorShadow[]={0,0,0,1}; colorBorder[]={0,0,0,1}; soundEnter[]={"",0.1,1}; soundPush[]={"",0.1,1}; soundClick[]={"",0.1,1}; soundEscape[]={"",0.1,1}; shadow=0; borderSize=0; offsetX=0; offsetY=0; offsetPressedX=0; offsetPressedY=0; };
 
 class FDC_ContactDialog {
- idd=9100; movingEnable=0; enableSimulation=1; onLoad="disableSerialization; (_this select 0) setVariable ['FDC_debugInstance',diag_tickTime]; diag_log format ['[FDC FIX 20261006-B] onLoad idd=9100 display=%1',_this select 0]; _this call FDC_fnc_initContactDialog;";
+ idd=9100; movingEnable=0; enableSimulation=1; onLoad="disableSerialization; (_this select 0) setVariable ['FDC_debugInstance',diag_tickTime]; diag_log format ['[FDC FIX 20261006-C] onLoad idd=9100 display=%1',_this select 0]; _this call FDC_fnc_initContactDialog;";
  class controlsBackground { class Background:FDC_Background{}; };
  class controls {
-  class Title:FDC_Title { text="1. ADAS - KAPCSOLATFELVETEL [FIX B]"; };
+  class Title:FDC_Title { text="1. ADAS - KAPCSOLATFELVETEL [FIX C]"; };
   class L1:FDC_Label { y=0.28; text="Tuzfeladat:"; };
   class Mission:FDC_Combo { idc=9110; y=0.28; };
   class Next:FDC_Button { idc=9101; onButtonClick="if ([ctrlParent (_this select 0)] call FDC_fnc_saveContact) then { closeDialog 0; createDialog 'FDC_CoordinateDialog'; };"; };
@@ -17,10 +17,10 @@ class FDC_ContactDialog {
 };
 
 class FDC_CoordinateDialog {
- idd=9200; movingEnable=0; enableSimulation=1; onLoad="disableSerialization; (_this select 0) setVariable ['FDC_debugInstance',diag_tickTime]; diag_log format ['[FDC FIX 20261006-B] onLoad idd=9200 display=%1',_this select 0]; _this call FDC_fnc_initCoordinateDialog;";
+ idd=9200; movingEnable=0; enableSimulation=1; onLoad="disableSerialization; (_this select 0) setVariable ['FDC_debugInstance',diag_tickTime]; diag_log format ['[FDC FIX 20261006-C] onLoad idd=9200 display=%1',_this select 0]; _this call FDC_fnc_initCoordinateDialog;";
  class controlsBackground { class Background:FDC_Background{}; };
  class controls {
-  class Title:FDC_Title { text="2. ADAS - KOORDINATA"; };
+  class Title:FDC_Title { text="2. ADAS - KOORDINATA [FIX C]"; };
   class LMode:FDC_Label { y=0.23; text="Helymeghatarozas:"; }; class Mode:FDC_Combo { idc=9210; y=0.23; };
   class L1:FDC_Label { idc=9220; y=0.30; }; class E1:FDC_Edit { idc=9230; y=0.30; maxChars=5; };
   class L2:FDC_Label { idc=9221; y=0.36; }; class E2:FDC_Edit { idc=9231; y=0.36; maxChars=5; };
@@ -34,7 +34,7 @@ class FDC_CoordinateDialog {
 };
 
 class FDC_TargetTypeDialog {
- idd=9300; movingEnable=0; enableSimulation=1; onLoad="disableSerialization; (_this select 0) setVariable ['FDC_debugInstance',diag_tickTime]; diag_log format ['[FDC FIX 20261006-B] onLoad idd=9300 display=%1',_this select 0]; _this call FDC_fnc_initTargetDialog;";
+ idd=9300; movingEnable=0; enableSimulation=1; onLoad="disableSerialization; (_this select 0) setVariable ['FDC_debugInstance',diag_tickTime]; diag_log format ['[FDC FIX 20261006-C] onLoad idd=9300 display=%1',_this select 0]; _this call FDC_fnc_initTargetDialog;";
  class controlsBackground { class Background:FDC_Background{}; };
  class controls {
   class Title:FDC_Title { text="3. ADAS - CEL JELLEGE"; };
@@ -53,7 +53,7 @@ class FDC_TargetTypeDialog {
 };
 
 class FDC_MTODialog {
- idd=9400; movingEnable=0; enableSimulation=1; onLoad="disableSerialization; (_this select 0) setVariable ['FDC_debugInstance',diag_tickTime]; diag_log format ['[FDC FIX 20261006-B] onLoad idd=9400 display=%1',_this select 0]; _this call FDC_fnc_initMTODialog;";
+ idd=9400; movingEnable=0; enableSimulation=1; onLoad="disableSerialization; (_this select 0) setVariable ['FDC_debugInstance',diag_tickTime]; diag_log format ['[FDC FIX 20261006-C] onLoad idd=9400 display=%1',_this select 0]; _this call FDC_fnc_initMTODialog;";
  class controlsBackground { class Background:FDC_Background{}; };
  class controls {
   class Title:FDC_Title { text="MTO"; };
