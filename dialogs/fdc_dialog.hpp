@@ -26,7 +26,7 @@ class FDC_CoordinateDialog {
   class L2:FDC_Label { idc=9221; y=0.36; }; class E2:FDC_Edit { idc=9231; y=0.36; maxChars=5; };
   class L3:FDC_Label { idc=9222; y=0.42; }; class E3:FDC_Edit { idc=9232; y=0.42; };
   class L4:FDC_Label { idc=9223; y=0.48; }; class E4:FDC_Edit { idc=9233; y=0.48; maxChars=4; }; class LR:FDC_Combo { idc=9240; x=0.43; y=0.48; w=0.12; };
-  class L5:FDC_Label { idc=9224; y=0.54; }; class E5:FDC_Edit { idc=9234; y=0.54; }; class NF:FDC_Combo { idc=9241; x=0.43; y=0.54; w=0.12; };
+  class L5:FDC_Label { idc=9224; y=0.54; }; class E5:FDC_Edit { idc=9234; y=0.54; maxChars=5; }; class NF:FDC_Combo { idc=9241; x=0.43; y=0.54; w=0.12; };
   class L6:FDC_Label { idc=9225; y=0.60; }; class E6:FDC_Edit { idc=9235; y=0.60; maxChars=4; };
   class Back:FDC_Button { x=0.46; y=0.80; text="Vissza"; onButtonClick="[] call FDC_fnc_saveCoordinate; closeDialog 0; createDialog 'FDC_ContactDialog';"; };
   class Next:FDC_Button { onButtonClick="[] call FDC_fnc_saveCoordinate; closeDialog 0; createDialog 'FDC_TargetTypeDialog';"; };
