@@ -1,5 +1,5 @@
 disableSerialization;
-private _display = findDisplay 9300;
+params [["_display", displayNull, [displayNull]]];
 if (isNull _display) exitWith {};
 private _data = [];
 { _data pushBack ctrlText (_display displayCtrl _x); } forEach [9310,9311,9312,9313,9314,9315];
