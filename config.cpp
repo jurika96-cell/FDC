@@ -32,6 +32,8 @@ class CfgFunctions
             class initTargetDialog {};
             class saveTarget {};
             class initMTODialog {};
+            class scanArtillery {};
+            class groupArtillery {};
             class saveMTO {};
         };
     };
