@@ -22,3 +22,7 @@ if (count _groups == 0) then {
 };
 
 (_display displayCtrl 9414) ctrlSetText "-- s";
+
+if (count _groups > 0) then {
+    [_display] call FDC_fnc_updateMTO;
+};
