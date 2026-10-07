@@ -37,6 +37,7 @@ class CfgFunctions
             class resolveTargetPosition {};
             class updateMTO {};
             class saveMTO {};
+            class executeMTOFire {};
         };
     };
 };
