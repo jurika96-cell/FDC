@@ -38,6 +38,8 @@ class CfgFunctions
             class updateMTO {};
             class saveMTO {};
             class executeMTOFire {};
+            class initAdjustmentDialog {};
+            class applyAdjustment {};
         };
     };
 };
