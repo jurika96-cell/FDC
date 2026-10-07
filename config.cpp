@@ -34,6 +34,8 @@ class CfgFunctions
             class initMTODialog {};
             class scanArtillery {};
             class groupArtillery {};
+            class resolveTargetPosition {};
+            class updateMTO {};
             class saveMTO {};
         };
     };
