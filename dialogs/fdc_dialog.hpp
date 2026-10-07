@@ -65,7 +65,7 @@ class FDC_MTODialog {
   class Back:FDC_Button { x=0.22; y=0.54; text="Vissza"; onButtonClick="closeDialog 0; createDialog 'FDC_TargetTypeDialog';"; };
   class Save:FDC_Button { x=0.22; y=0.60; text="Rogzites"; onButtonClick="[ctrlParent (_this select 0)] call FDC_fnc_saveMTO"; };
   class Adjust:FDC_Button { x=0.38; y=0.60; text="Javitas"; onButtonClick="hint 'Javitas funkcio kovetkezik';"; };
-  class AdjustFire:FDC_Button { x=0.54; y=0.67; text="Beloves"; onButtonClick="hint 'Beloves funkcio kovetkezik';"; };
-  class FFE:FDC_Button { x=0.54; y=0.74; text="Hatastuz"; onButtonClick="hint 'Hatastuz funkcio kovetkezik';"; };
+  class AdjustFire:FDC_Button { x=0.54; y=0.67; text="Beloves"; onButtonClick="[\"BELOVES\"] call FDC_fnc_executeMTOFire;"; };
+  class FFE:FDC_Button { x=0.54; y=0.74; text="Hatastuz"; onButtonClick="[\"HATASTUZ\"] call FDC_fnc_executeMTOFire;"; };
  };
 };
