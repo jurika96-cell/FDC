@@ -42,17 +42,17 @@ missionNamespace setVariable [format ["FDC_fired_%1", toUpper _mode], 0];
     if (alive _gun && {_magazine isNotEqualTo ""}) then {
         // Capture ammunition BEFORE issuing the command so the acknowledgement
         // can detect the first actually fired round.
-        private _before = _gun magazineTurretAmmo [_magazine, [0]];
+        private _before = _gun ammo (currentWeapon _gun);
         _gun doArtilleryFire [_target, _magazine, _rounds];
 
-        [_gun, _magazine, _mode, _before] spawn {
-            params ["_gun", "_magazine", "_mode", "_before"];
+        [_gun, _mode, _before] spawn {
+            params ["_gun", "_mode", "_before"];
             private _deadline = time + 20;
             waitUntil {
                 sleep 0.1;
-                !alive _gun || {time > _deadline} || {(_gun magazineTurretAmmo [_magazine, [0]]) < _before}
+                !alive _gun || {time > _deadline} || {(_gun ammo (currentWeapon _gun)) < _before}
             };
-            if (alive _gun && {(_gun magazineTurretAmmo [_magazine, [0]]) < _before}) then {
+            if (alive _gun && {(_gun ammo (currentWeapon _gun)) < _before}) then {
                 private _key = format ["FDC_fired_%1", toUpper _mode];
                 private _count = (missionNamespace getVariable [_key, 0]) + 1;
                 missionNamespace setVariable [_key, _count];
