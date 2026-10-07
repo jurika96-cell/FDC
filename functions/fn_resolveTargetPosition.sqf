@@ -2,6 +2,9 @@
     Resolve the current Call for Fire target to an ATL position.
     Supports the three currently implemented second-transmission modes.
 */
+private _adjusted = missionNamespace getVariable ["FDC_adjustedTargetPosition", []];
+if (count _adjusted >= 3) exitWith {+_adjusted};
+
 private _mode = missionNamespace getVariable ["FDC_locationMode", "Koordinata"];
 private _v = missionNamespace getVariable ["FDC_locationValues", []];
 if (count _v < 6) exitWith {[]};
