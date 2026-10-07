@@ -33,12 +33,9 @@ missionNamespace setVariable ["FDC_adjustmentObserverAzimuth", _azMils];
 missionNamespace setVariable ["FDC_adjustedTargetPosition", _new];
 missionNamespace setVariable ["FDC_MTOTargetPosition", _new];
 
-// Recalculate valid gun solutions/TOF against the corrected target.
+// Recalculate valid gun solutions/TOF against the corrected target on the existing MTO.
 private _mto = findDisplay 9400;
+if (!isNull _mto) then {[_mto] call FDC_fnc_updateMTO;};
 closeDialog 0;
-createDialog "FDC_MTODialog";
-[{!isNull findDisplay 9400}, {
-    [findDisplay 9400] call FDC_fnc_updateMTO;
-    hint "Javitas rogzitve. Uj tuzmegoldas kiszamitva.";
-}] call CBA_fnc_waitUntilAndExecute;
+hint "Javitas rogzitve. Uj tuzmegoldas kiszamitva.";
 true
