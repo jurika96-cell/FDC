@@ -57,10 +57,10 @@ class FDC_MTODialog {
  class controlsBackground { class Background:FDC_Background{}; };
  class controls {
   class Title:FDC_Title { text="MTO"; };
-  class L1:FDC_Label { y=0.25; text="Lovo alegyseg:"; }; class Unit:FDC_Combo { idc=9410; y=0.25; };
+  class L1:FDC_Label { y=0.25; text="Lovo alegyseg:"; }; class Unit:FDC_Combo { idc=9410; y=0.25; onLBSelChanged="[ctrlParent (_this select 0)] call FDC_fnc_updateMTO;"; };
   class L2:FDC_Label { y=0.31; text="Cel szama:"; }; class TargetNo:FDC_Edit { idc=9411; y=0.31; };
-  class L3:FDC_Label { y=0.37; text="Lovo lovegek:"; }; class Guns:FDC_Edit { idc=9412; y=0.37; };
-  class L4:FDC_Label { y=0.43; text="Granat / loveg:"; }; class Rounds:FDC_Edit { idc=9413; y=0.43; };
+  class L3:FDC_Label { y=0.37; text="Lovo lovegek:"; }; class Guns:FDC_Edit { idc=9412; y=0.37; onKillFocus="[ctrlParent (_this select 0)] call FDC_fnc_updateMTO;"; };
+  class L4:FDC_Label { y=0.43; text="Granat / loveg:"; }; class Rounds:FDC_Edit { idc=9413; y=0.43; onKillFocus="[ctrlParent (_this select 0)] call FDC_fnc_updateMTO;"; };
   class L5:FDC_Label { y=0.49; text="Legkisebb ropido:"; }; class TOF:FDC_Label { idc=9414; x=0.43; y=0.49; w=0.32; text="-- s"; };
   class Back:FDC_Button { x=0.22; y=0.54; text="Vissza"; onButtonClick="closeDialog 0; createDialog 'FDC_TargetTypeDialog';"; };
   class Save:FDC_Button { x=0.22; y=0.60; text="Rogzites"; onButtonClick="[ctrlParent (_this select 0)] call FDC_fnc_saveMTO"; };
