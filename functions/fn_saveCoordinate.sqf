@@ -6,6 +6,8 @@ private _values = [];
 { _values pushBack ctrlText (_display displayCtrl _x); } forEach [9230,9231,9232,9233,9234,9235];
 missionNamespace setVariable ["FDC_locationMode", _combo lbText (lbCurSel _combo)];
 missionNamespace setVariable ["FDC_locationValues", _values];
+// A newly saved second transmission starts a fresh target solution.
+missionNamespace setVariable ["FDC_adjustedTargetPosition", []];
 
 if ((missionNamespace getVariable ["FDC_missionType", ""]) isEqualTo "Tuzathelyezes ismert pontrol") then {
     private _lr = _display displayCtrl 9240;
