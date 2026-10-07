@@ -64,8 +64,27 @@ class FDC_MTODialog {
   class L5:FDC_Label { y=0.49; text="Legkisebb ropido:"; }; class TOF:FDC_Label { idc=9414; x=0.43; y=0.49; w=0.32; text="-- s"; };
   class Back:FDC_Button { x=0.22; y=0.54; text="Vissza"; onButtonClick="closeDialog 0; createDialog 'FDC_TargetTypeDialog';"; };
   class Save:FDC_Button { x=0.22; y=0.60; text="Rogzites"; onButtonClick="[ctrlParent (_this select 0)] call FDC_fnc_saveMTO"; };
-  class Adjust:FDC_Button { x=0.38; y=0.60; text="Javitas"; onButtonClick="hint 'Javitas funkcio kovetkezik';"; };
+  class Adjust:FDC_Button { x=0.38; y=0.60; text="Javitas"; onButtonClick="createDialog 'FDC_AdjustmentDialog';"; };
   class AdjustFire:FDC_Button { x=0.54; y=0.67; text="Beloves"; onButtonClick="['BELOVES'] call FDC_fnc_executeMTOFire;"; };
   class FFE:FDC_Button { x=0.54; y=0.74; text="Hatastuz"; onButtonClick="['HATASTUZ'] call FDC_fnc_executeMTOFire;"; };
+ };
+};
+
+
+class FDC_AdjustmentDialog {
+ idd=9500; movingEnable=0; enableSimulation=1; onLoad="_this call FDC_fnc_initAdjustmentDialog;";
+ class controlsBackground { class Background:FDC_Background{}; };
+ class controls {
+  class Title:FDC_Title { text="JAVITAS - FIGYELOVONALHOZ KEPest"; };
+  class LAz:FDC_Label { y=0.27; text="Figyelo iranyszog (mils):"; };
+  class Az:FDC_Edit { idc=9510; y=0.27; maxChars=4; };
+  class LLat:FDC_Label { y=0.35; text="Oldaliranyu javitas:"; };
+  class LR:FDC_Combo { idc=9511; x=0.43; y=0.35; w=0.14; };
+  class Lat:FDC_Edit { idc=9512; x=0.59; y=0.35; w=0.16; };
+  class LRange:FDC_Label { y=0.43; text="Tavolsagi javitas:"; };
+  class NF:FDC_Combo { idc=9513; x=0.43; y=0.43; w=0.14; };
+  class Range:FDC_Edit { idc=9514; x=0.59; y=0.43; w=0.16; };
+  class Cancel:FDC_Button { x=0.43; y=0.55; text="Megse"; onButtonClick="closeDialog 0;"; };
+  class Apply:FDC_Button { x=0.61; y=0.55; text="Rogzites"; onButtonClick="[ctrlParent (_this select 0)] call FDC_fnc_applyAdjustment;"; };
  };
 };
