@@ -40,12 +40,13 @@ missionNamespace setVariable [format ["FDC_fired_%1", toUpper _mode], 0];
 {
     _x params ["_gun", "_magazine", "_eta"];
     if (alive _gun && {_magazine isNotEqualTo ""}) then {
+        // Capture ammunition BEFORE issuing the command so the acknowledgement
+        // can detect the first actually fired round.
+        private _before = _gun magazineTurretAmmo [_magazine, [0]];
         _gun doArtilleryFire [_target, _magazine, _rounds];
 
-        // Positive acknowledgement: count guns that actually expend ammunition.
-        [_gun, _magazine, _mode] spawn {
-            params ["_gun", "_magazine", "_mode"];
-            private _before = _gun magazineTurretAmmo [_magazine, [0]];
+        [_gun, _magazine, _mode, _before] spawn {
+            params ["_gun", "_magazine", "_mode", "_before"];
             private _deadline = time + 20;
             waitUntil {
                 sleep 0.1;
@@ -55,11 +56,12 @@ missionNamespace setVariable [format ["FDC_fired_%1", toUpper _mode], 0];
                 private _key = format ["FDC_fired_%1", toUpper _mode];
                 private _count = (missionNamespace getVariable [_key, 0]) + 1;
                 missionNamespace setVariable [_key, _count];
-                systemChat format ["FDC: %1/%2 loveg tuzelt (%3)", _count, missionNamespace getVariable ["FDC_expectedFiringGuns", 1], toUpper _mode];
-            };
-        };
-            if (alive _gun && {(_gun magazineTurretAmmo [_magazine, [0]]) < _before}) then {
-                systemChat format ["FDC: %1 TUZELT (%2)", vehicleVarName _gun, toUpper _mode];
+                systemChat format [
+                    "FDC: %1/%2 loveg tuzelt (%3)",
+                    _count,
+                    missionNamespace getVariable ["FDC_expectedFiringGuns", 1],
+                    toUpper _mode
+                ];
             };
         };
     };
