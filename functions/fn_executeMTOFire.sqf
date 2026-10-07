@@ -11,6 +11,23 @@ private _target = missionNamespace getVariable ["FDC_MTOTargetPosition", []];
 private _solutions = missionNamespace getVariable ["FDC_MTOGunSolutions", []];
 private _mto = missionNamespace getVariable ["FDC_MTOData", []];
 
+// If the MTO dialog is still open, use the current field values too. This prevents
+// an earlier recorded value from overriding a later edit (e.g. 3 guns changed after recording).
+private _display = findDisplay 9400;
+if (!isNull _display) then {
+    private _currentGuns = floor parseNumber (ctrlText (_display displayCtrl 9412));
+    private _currentRounds = floor parseNumber (ctrlText (_display displayCtrl 9413));
+    if (_currentGuns > 0) then {
+        if (count _mto < 5) then {_mto resize 5;};
+        _mto set [2, str _currentGuns];
+    };
+    if (_currentRounds > 0) then {
+        if (count _mto < 5) then {_mto resize 5;};
+        _mto set [3, str _currentRounds];
+    };
+    missionNamespace setVariable ["FDC_MTOData", _mto];
+};
+
 if (_groupIndex < 0 || {count _target < 3} || {count _solutions == 0}) exitWith {
     hint "Nincs ervenyes tuzmegoldas. Elobb rogzitd az MTO-t.";
     false
@@ -37,6 +54,21 @@ if (toUpper _mode isEqualTo "BELOVES") then {
     _x params ["_gun", "_magazine", "_eta"];
     if (alive _gun && {_magazine isNotEqualTo ""}) then {
         _gun doArtilleryFire [_target, _magazine, _rounds];
+
+        // Positive acknowledgement: report when this gun actually expends ammunition,
+        // rather than when the fire command is merely issued.
+        [_gun, _magazine, _rounds, _mode] spawn {
+            params ["_gun", "_magazine", "_expectedRounds", "_mode"];
+            private _before = _gun magazineTurretAmmo [_magazine, [0]];
+            private _deadline = time + 20;
+            waitUntil {
+                sleep 0.1;
+                !alive _gun || {time > _deadline} || {(_gun magazineTurretAmmo [_magazine, [0]]) < _before}
+            };
+            if (alive _gun && {(_gun magazineTurretAmmo [_magazine, [0]]) < _before}) then {
+                systemChat format ["FDC: %1 TUZELT (%2)", vehicleVarName _gun, toUpper _mode];
+            };
+        };
     };
 } forEach _fireSolutions;
 
