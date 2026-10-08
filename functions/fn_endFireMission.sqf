@@ -16,7 +16,12 @@ missionNamespace setVariable ["FDC_activeFireMission", false];
     "FDC_locationMode",
     "FDC_shiftDirections",
     "FDC_missionType",
-    "FDC_targetData"
+    "FDC_targetData",
+    "FDC_targetNumber",
+    "FDC_adjustmentLog",
+    "FDC_fireReportText",
+    "FDC_observerReport",
+    "FDC_fireLogEvents"
 ];
 closeDialog 0;
 hint "Tuzfeladat vege.";
