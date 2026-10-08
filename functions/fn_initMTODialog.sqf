@@ -33,6 +33,10 @@ if (count _savedMTO >= 4) then {
     (_display displayCtrl 9413) ctrlSetText (_savedMTO select 3);
 };
 
+if (count _savedMTO < 4) then {
+    private _number = missionNamespace getVariable ["FDC_targetNumber",""];
+    if (_number isNotEqualTo "") then {(_display displayCtrl 9411) ctrlSetText _number;};
+};
 (_display displayCtrl 9414) ctrlSetText "-- s";
 
 if (count _groups > 0) then {
