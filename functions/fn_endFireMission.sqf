@@ -8,6 +8,7 @@ missionNamespace setVariable ["FDC_activeFireMission", false];
 } forEach [
     "FDC_MTOData",
     "FDC_MTOSelectedGroup",
+    "FDC_MTOSelectedGroupName",
     "FDC_MTOTargetPosition",
     "FDC_MTOGunSolutions",
     "FDC_adjustedTargetPosition",
