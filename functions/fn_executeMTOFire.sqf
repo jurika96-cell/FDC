@@ -43,6 +43,27 @@ missionNamespace setVariable [format ["FDC_fired_%1", toUpper _mode], 0];
         // Capture ammunition BEFORE issuing the command so the acknowledgement
         // can detect the first actually fired round.
         private _before = _gun ammo (currentWeapon _gun);
+        // Attach before issuing fire: the countdown starts on the actual shot.
+        // A fresh handler is installed per fire order and removed after the volley window.
+        private _eh = _gun addEventHandler ["Fired", {
+            params ["_unit", "_weapon", "_muzzle", "_fireMode", "_ammo", "_firedMagazine", "_projectile"];
+            private _watch = _unit getVariable ["FDC_impactWatch", []];
+            if (count _watch < 2) exitWith {};
+            _watch params ["_expectedMagazine", "_flightTime"];
+            if (_firedMagazine isNotEqualTo _expectedMagazine) exitWith {};
+            [_flightTime] spawn {
+                params ["_flightTime"];
+                sleep ((_flightTime - 5) max 0);
+                systemChat "FDC: BECSAPODAS - 5 masodperc!";
+                hintSilent "BECSAPODAS - 5 masodperc!";
+            };
+        }];
+        _gun setVariable ["FDC_impactWatch", [_magazine, _eta]];
+        [_gun, _eh] spawn {
+            params ["_gun", "_eh"];
+            sleep 120;
+            if (!isNull _gun) then {_gun removeEventHandler ["Fired", _eh];};
+        };
         _gun doArtilleryFire [_target, _magazine, _rounds];
 
         [_gun, _mode, _before] spawn {
