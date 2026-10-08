@@ -40,6 +40,7 @@ class CfgFunctions
             class executeMTOFire {};
             class initAdjustmentDialog {};
             class applyAdjustment {};
+            class endFireMission {};
         };
     };
 };
