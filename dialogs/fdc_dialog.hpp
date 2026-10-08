@@ -53,7 +53,7 @@ class FDC_TargetTypeDialog {
 };
 
 class FDC_MTODialog {
- idd=9400; movingEnable=0; enableSimulation=1; onLoad="disableSerialization; (_this select 0) setVariable ['FDC_debugInstance',diag_tickTime]; diag_log format ['[FDC FIX 20261006-C] onLoad idd=9400 display=%1',_this select 0]; _this call FDC_fnc_initMTODialog;";
+ idd=9400; movingEnable=0; enableSimulation=1; onLoad="missionNamespace setVariable ['FDC_activeFireMission', true]; disableSerialization; (_this select 0) setVariable ['FDC_debugInstance',diag_tickTime]; diag_log format ['[FDC FIX 20261006-C] onLoad idd=9400 display=%1',_this select 0]; _this call FDC_fnc_initMTODialog;";
  class controlsBackground { class Background:FDC_Background{}; };
  class controls {
   class Title:FDC_Title { text="MTO"; };
@@ -67,6 +67,7 @@ class FDC_MTODialog {
   class Adjust:FDC_Button { x=0.38; y=0.60; text="Javitas"; onButtonClick="createDialog 'FDC_AdjustmentDialog';"; };
   class AdjustFire:FDC_Button { x=0.54; y=0.67; text="Beloves"; onButtonClick="['BELOVES'] call FDC_fnc_executeMTOFire;"; };
   class FFE:FDC_Button { x=0.54; y=0.74; text="Hatastuz"; onButtonClick="['HATASTUZ'] call FDC_fnc_executeMTOFire;"; };
+  class EndMission:FDC_Button { x=0.22; y=0.74; w=0.28; text="Tuzfeladat vege"; onButtonClick="[] call FDC_fnc_endFireMission;"; };
  };
 };
 
