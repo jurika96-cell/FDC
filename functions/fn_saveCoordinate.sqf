@@ -6,6 +6,18 @@ private _values = [];
 { _values pushBack ctrlText (_display displayCtrl _x); } forEach [9230,9231,9232,9233,9234,9235];
 missionNamespace setVariable ["FDC_locationMode", _combo lbText (lbCurSel _combo)];
 missionNamespace setVariable ["FDC_locationValues", _values];
+private _number = toUpper (ctrlText (_display displayCtrl 9250));
+private _chars = toArray _number;
+private _valid = (count _chars == 6);
+if (_valid) then {
+    for "_i" from 0 to 5 do {
+        private _n = _chars select _i;
+        if (_i < 2) then {if (_n < 65 || {_n > 90}) then {_valid = false;};}
+        else {if (_n < 48 || {_n > 57}) then {_valid = false;};};
+    };
+};
+if (_number isNotEqualTo "" && {!_valid}) exitWith {hint "Celszam formatum: QB1001"; false};
+missionNamespace setVariable ["FDC_targetNumber",_number];
 // A newly saved second transmission starts a fresh target solution.
 missionNamespace setVariable ["FDC_adjustedTargetPosition", []];
 
