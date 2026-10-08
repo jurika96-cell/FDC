@@ -6,6 +6,9 @@
 */
 params [["_mode", "BELOVES", [""]]];
 
+private _modeKey = toUpper _mode;
+private _cooldownKey = format ["FDC_fireCooldown_%1",_modeKey];
+if (diag_tickTime < (missionNamespace getVariable [_cooldownKey,0])) exitWith {false};
 private _groupIndex = missionNamespace getVariable ["FDC_MTOSelectedGroup", -1];
 private _target = missionNamespace getVariable ["FDC_MTOTargetPosition", []];
 private _solutions = missionNamespace getVariable ["FDC_MTOGunSolutions", []];
@@ -88,6 +91,22 @@ missionNamespace setVariable [format ["FDC_fired_%1", toUpper _mode], 0];
     };
 } forEach _fireSolutions;
 
+// Five-second UI cooldown after a valid fire order, independent of actual gun reload.
+private _until = diag_tickTime + 5;
+missionNamespace setVariable [_cooldownKey,_until];
+disableSerialization;
+private _mtoDisplay = findDisplay 9400;
+private _buttonIdc = if (_modeKey isEqualTo "BELOVES") then {9422} else {9423};
+if (!isNull _mtoDisplay) then {(_mtoDisplay displayCtrl _buttonIdc) ctrlShow false;};
+[_buttonIdc,_cooldownKey,_until] spawn {
+    params ["_idc","_key","_until"];
+    uiSleep 5;
+    if (diag_tickTime >= (missionNamespace getVariable [_key,0])) then {
+        disableSerialization;
+        private _d = findDisplay 9400;
+        if (!isNull _d) then {(_d displayCtrl _idc) ctrlShow true;};
+    };
+};
 private _label = if (toUpper _mode isEqualTo "BELOVES") then {
     "Beloves kiadva: 1 loveg, 1 granat"
 } else {
