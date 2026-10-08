@@ -3,6 +3,10 @@ params [["_display", displayNull, [displayNull]]];
 if (isNull _display) exitWith { diag_log "[FDC] initMTO: missing display"; };
 
 private _savedMTO = missionNamespace getVariable ["FDC_MTOData", []];
+(_display displayCtrl 9420) ctrlShow (count _savedMTO < 4);
+(_display displayCtrl 9421) ctrlShow (count _savedMTO >= 4);
+(_display displayCtrl 9422) ctrlShow (diag_tickTime >= (missionNamespace getVariable ["FDC_fireCooldown_BELOVES",0]));
+(_display displayCtrl 9423) ctrlShow (diag_tickTime >= (missionNamespace getVariable ["FDC_fireCooldown_HATASTUZ",0]));
 private _combo = _display displayCtrl 9410;
 lbClear _combo;
 
