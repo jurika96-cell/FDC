@@ -28,6 +28,7 @@ class FDC_CoordinateDialog {
   class L4:FDC_Label { idc=9223; y=0.48; }; class E4:FDC_Edit { idc=9233; y=0.48; maxChars=4; }; class LR:FDC_Combo { idc=9240; x=0.43; y=0.48; w=0.12; };
   class L5:FDC_Label { idc=9224; y=0.54; }; class E5:FDC_Edit { idc=9234; y=0.54; }; class NF:FDC_Combo { idc=9241; x=0.43; y=0.54; w=0.12; };
   class L6:FDC_Label { idc=9225; y=0.60; }; class E6:FDC_Edit { idc=9235; y=0.60; maxChars=4; };
+  class LNumber:FDC_Label { y=0.67; text="Celszam (opcionalis):"; }; class Number:FDC_Edit { idc=9250; y=0.67; maxChars=6; };
   class Back:FDC_Button { x=0.46; y=0.80; text="Vissza"; onButtonClick="[ctrlParent (_this select 0)] call FDC_fnc_saveCoordinate; closeDialog 0; createDialog 'FDC_ContactDialog';"; };
   class Next:FDC_Button { onButtonClick="[ctrlParent (_this select 0)] call FDC_fnc_saveCoordinate; closeDialog 0; createDialog 'FDC_TargetTypeDialog';"; };
  };
@@ -43,7 +44,7 @@ class FDC_TargetTypeDialog {
   class L3:FDC_Label { y=0.35; text="Szelesseg (m):"; }; class E3:FDC_Edit { idc=9312; y=0.35; };
   class L4:FDC_Label { y=0.41; text="Melyseg (m):"; }; class E4:FDC_Edit { idc=9313; y=0.41; };
   class L5:FDC_Label { y=0.47; text="Alak:"; }; class E5:FDC_Edit { idc=9314; y=0.47; };
-  class L6:FDC_Label { y=0.53; text="Cel iranya (mils):"; }; class E6:FDC_Edit { idc=9315; y=0.53; maxChars=4; };
+  class L6:FDC_Label { y=0.53; text="Cel fekvese (mils):"; }; class E6:FDC_Edit { idc=9315; y=0.53; maxChars=4; };
   class L7:FDC_Label { y=0.59; text="Granat:"; }; class C1:FDC_Combo { idc=9316; y=0.59; };
   class L8:FDC_Label { y=0.65; text="Gyujto:"; }; class C2:FDC_Combo { idc=9317; y=0.65; };
   class L9:FDC_Label { y=0.71; text="Roppalya:"; }; class C3:FDC_Combo { idc=9318; y=0.71; };
@@ -67,7 +68,7 @@ class FDC_MTODialog {
   class Adjust:FDC_Button { x=0.38; y=0.60; text="Javitas"; onButtonClick="createDialog 'FDC_AdjustmentDialog';"; };
   class AdjustFire:FDC_Button { x=0.54; y=0.67; text="Beloves"; onButtonClick="['BELOVES'] call FDC_fnc_executeMTOFire;"; };
   class FFE:FDC_Button { x=0.54; y=0.74; text="Hatastuz"; onButtonClick="['HATASTUZ'] call FDC_fnc_executeMTOFire;"; };
-  class EndMission:FDC_Button { x=0.22; y=0.74; w=0.28; text="Tuzfeladat vege"; onButtonClick="[] call FDC_fnc_endFireMission;"; };
+  class EndMission:FDC_Button { x=0.22; y=0.74; w=0.28; text="Tuzfeladat vege"; onButtonClick="createDialog 'FDC_ObserverReportDialog';"; };
  };
 };
 
@@ -87,5 +88,27 @@ class FDC_AdjustmentDialog {
   class Range:FDC_Edit { idc=9514; x=0.59; y=0.43; w=0.16; };
   class Cancel:FDC_Button { x=0.43; y=0.55; text="Megse"; onButtonClick="closeDialog 0;"; };
   class Apply:FDC_Button { x=0.61; y=0.55; text="Rogzites"; onButtonClick="[ctrlParent (_this select 0)] call FDC_fnc_applyAdjustment;"; };
+ };
+};
+
+class FDC_ObserverReportDialog {
+ idd=9600; movingEnable=0; enableSimulation=1;
+ class controlsBackground { class Background:FDC_Background{}; };
+ class controls {
+  class Title:FDC_Title { text="FIGYELO JELENTESE - BDA"; };
+  class Prompt:FDC_Label { x=0.22; y=0.29; w=0.52; text="A figyelo jelenti:"; };
+  class Report:FDC_Edit { idc=9610; x=0.22; y=0.37; w=0.54; h=0.08; };
+  class Back:FDC_Button { x=0.43; y=0.60; text="Vissza"; onButtonClick="closeDialog 0;"; };
+  class Next:FDC_Button { x=0.61; y=0.60; text="Naplo"; onButtonClick="[ctrlParent (_this select 0)] call FDC_fnc_submitObserverReport;"; };
+ };
+};
+class FDC_FireReportDialog {
+ idd=9700; movingEnable=0; enableSimulation=1; onLoad="_this call FDC_fnc_showFireReport;";
+ class controlsBackground { class Background:FDC_Background{}; };
+ class controls {
+  class Title:FDC_Title { text="TUZFELADAT NAPLO - ELLENORZES"; };
+  class Report:FDC_Edit { idc=9710; x=0.22; y=0.25; w=0.54; h=0.42; style=16; canModify=0; };
+  class Back:FDC_Button { x=0.40; y=0.74; w=0.15; text="BDA javitas"; onButtonClick="closeDialog 0; createDialog 'FDC_ObserverReportDialog';"; };
+  class Save:FDC_Button { x=0.57; y=0.74; w=0.20; text="Mentes es zaras"; onButtonClick="[] call FDC_fnc_finalizeFireMission;"; };
  };
 };
