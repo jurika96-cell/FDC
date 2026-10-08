@@ -29,8 +29,8 @@ class FDC_CoordinateDialog {
   class L5:FDC_Label { idc=9224; y=0.54; }; class E5:FDC_Edit { idc=9234; y=0.54; }; class NF:FDC_Combo { idc=9241; x=0.43; y=0.54; w=0.12; };
   class L6:FDC_Label { idc=9225; y=0.60; }; class E6:FDC_Edit { idc=9235; y=0.60; maxChars=4; };
   class LNumber:FDC_Label { y=0.67; text="Celszam (opcionalis):"; }; class Number:FDC_Edit { idc=9250; y=0.67; maxChars=6; };
-  class Back:FDC_Button { x=0.46; y=0.80; text="Vissza"; onButtonClick="[ctrlParent (_this select 0)] call FDC_fnc_saveCoordinate; closeDialog 0; createDialog 'FDC_ContactDialog';"; };
-  class Next:FDC_Button { onButtonClick="[ctrlParent (_this select 0)] call FDC_fnc_saveCoordinate; closeDialog 0; createDialog 'FDC_TargetTypeDialog';"; };
+  class Back:FDC_Button { x=0.46; y=0.80; text="Vissza"; onButtonClick="if ([ctrlParent (_this select 0)] call FDC_fnc_saveCoordinate) then {closeDialog 0; createDialog 'FDC_ContactDialog';};"; };
+  class Next:FDC_Button { onButtonClick="if ([ctrlParent (_this select 0)] call FDC_fnc_saveCoordinate) then {closeDialog 0; createDialog 'FDC_TargetTypeDialog';};"; };
  };
 };
 
