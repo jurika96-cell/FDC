@@ -2,6 +2,7 @@ disableSerialization;
 params [["_display", displayNull, [displayNull]]];
 if (isNull _display) exitWith { diag_log "[FDC] initMTO: missing display"; };
 
+private _savedMTO = missionNamespace getVariable ["FDC_MTOData", []];
 private _combo = _display displayCtrl 9410;
 lbClear _combo;
 
@@ -18,7 +19,18 @@ if (count _groups == 0) then {
         private _row = _combo lbAdd format ["%1 (%2 loveg)", _id, _count];
         _combo lbSetData [_row, str _forEachIndex];
     } forEach _groups;
-    _combo lbSetCurSel 0;
+    private _savedName = if (count _savedMTO > 0) then {_savedMTO select 0} else {""};
+    private _savedIndex = -1;
+    for "_i" from 0 to ((lbSize _combo) - 1) do {
+        if ((_combo lbText _i) isEqualTo _savedName) exitWith {_savedIndex = _i;};
+    };
+    _combo lbSetCurSel (_savedIndex max 0);
+};
+
+if (count _savedMTO >= 4) then {
+    (_display displayCtrl 9411) ctrlSetText (_savedMTO select 1);
+    (_display displayCtrl 9412) ctrlSetText (_savedMTO select 2);
+    (_display displayCtrl 9413) ctrlSetText (_savedMTO select 3);
 };
 
 (_display displayCtrl 9414) ctrlSetText "-- s";
