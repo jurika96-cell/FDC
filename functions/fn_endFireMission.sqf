@@ -22,7 +22,9 @@ missionNamespace setVariable ["FDC_activeFireMission", false];
     "FDC_adjustmentLog",
     "FDC_fireReportText",
     "FDC_observerReport",
-    "FDC_fireLogEvents"
+    "FDC_fireLogEvents",
+    "FDC_fireCooldown_BELOVES",
+    "FDC_fireCooldown_HATASTUZ"
 ];
 closeDialog 0;
 hint "Tuzfeladat vege.";
