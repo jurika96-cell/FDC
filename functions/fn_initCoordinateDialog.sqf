@@ -29,6 +29,7 @@ if (_missionType isEqualTo "Tuzathelyezes ismert pontrol") then {
 // Apply labels and show only controls required by the selected mission type.
 [_display] call FDC_fnc_coordinateModeChanged;
 
+(_display displayCtrl 9250) ctrlSetText (missionNamespace getVariable ["FDC_targetNumber",""]);
 private _saved = missionNamespace getVariable ["FDC_locationValues", []];
 if ((count _saved) >= 6) then {
     for "_i" from 0 to 5 do {
