@@ -10,6 +10,8 @@ private _data = [
     ctrlText (_display displayCtrl 9414)
 ];
 missionNamespace setVariable ["FDC_MTOData", _data];
+(_display displayCtrl 9420) ctrlShow false;
+(_display displayCtrl 9421) ctrlShow true;
 // The MTO target number is authoritative once recorded.
 missionNamespace setVariable ["FDC_targetNumber", _data select 1];
 hint "MTO rogzitve";
