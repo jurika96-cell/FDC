@@ -19,10 +19,15 @@ if (count _groups == 0) then {
         private _row = _combo lbAdd format ["%1 (%2 loveg)", _id, _count];
         _combo lbSetData [_row, str _forEachIndex];
     } forEach _groups;
-    private _savedName = if (count _savedMTO > 0) then {_savedMTO select 0} else {""};
+    private _savedName = missionNamespace getVariable ["FDC_MTOSelectedGroupName", ""];
+    if (_savedName isEqualTo "" && {count _savedMTO > 0}) then {_savedName = _savedMTO select 0;};
     private _savedIndex = -1;
     for "_i" from 0 to ((lbSize _combo) - 1) do {
         if ((_combo lbText _i) isEqualTo _savedName) exitWith {_savedIndex = _i;};
+    };
+    if (_savedIndex < 0) then {
+        private _lastIndex = missionNamespace getVariable ["FDC_MTOSelectedGroup", -1];
+        if (_lastIndex >= 0 && {_lastIndex < lbSize _combo}) then {_savedIndex = _lastIndex;};
     };
     _combo lbSetCurSel (_savedIndex max 0);
 };
