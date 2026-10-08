@@ -10,7 +10,9 @@ private _nf = (_display displayCtrl 9513) lbText (lbCurSel (_display displayCtrl
 
 if (_azMils < 0 || {_azMils >= 6400}) exitWith {hint "A figyelovonal iranyszoge 0000-6399 mils legyen."; false};
 
-private _base = missionNamespace getVariable ["FDC_MTOTargetPosition", []];
+// Always start from the last corrected point, including consecutive adjustments.
+private _base = missionNamespace getVariable ["FDC_adjustedTargetPosition", []];
+if (count _base < 3) then {_base = missionNamespace getVariable ["FDC_MTOTargetPosition", []];};
 if (count _base < 3) then {_base = call FDC_fnc_resolveTargetPosition;};
 if (count _base < 3) exitWith {hint "Nincs ervenyes celpont."; false};
 
