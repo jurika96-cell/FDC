@@ -41,6 +41,10 @@ class CfgFunctions
             class initAdjustmentDialog {};
             class applyAdjustment {};
             class endFireMission {};
+            class logEvent {};
+            class showFireReport {};
+            class submitObserverReport {};
+            class finalizeFireMission {};
         };
     };
 };
