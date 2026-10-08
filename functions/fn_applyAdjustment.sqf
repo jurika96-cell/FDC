@@ -33,6 +33,9 @@ _new set [2, _base select 2];
 
 missionNamespace setVariable ["FDC_adjustmentObserverAzimuth", _azMils];
 missionNamespace setVariable ["FDC_adjustedTargetPosition", _new];
+private _entries = missionNamespace getVariable ["FDC_adjustmentLog",[]];
+_entries pushBack format ["Javitas: %1 %2 m, %3 %4 m (figyelovonal %5 mils)",_lr,_lateral,_nf,_range,_azMils];
+missionNamespace setVariable ["FDC_adjustmentLog",_entries];
 missionNamespace setVariable ["FDC_MTOTargetPosition", _new];
 
 // Recalculate valid gun solutions/TOF against the corrected target on the existing MTO.
