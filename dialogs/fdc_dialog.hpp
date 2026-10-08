@@ -64,10 +64,11 @@ class FDC_MTODialog {
   class L4:FDC_Label { y=0.43; text="Granat / loveg:"; }; class Rounds:FDC_Edit { idc=9413; y=0.43; onKillFocus="[ctrlParent (_this select 0)] call FDC_fnc_updateMTO;"; };
   class L5:FDC_Label { y=0.49; text="Legkisebb ropido:"; }; class TOF:FDC_Label { idc=9414; x=0.43; y=0.49; w=0.32; text="-- s"; };
   class Back:FDC_Button { x=0.22; y=0.54; text="Vissza"; onButtonClick="closeDialog 0; createDialog 'FDC_TargetTypeDialog';"; };
-  class Save:FDC_Button { x=0.22; y=0.60; text="Rogzites"; onButtonClick="[ctrlParent (_this select 0)] call FDC_fnc_saveMTO"; };
+  class Save:FDC_Button { idc=9420; x=0.22; y=0.60; text="Rogzites"; onButtonClick="[ctrlParent (_this select 0)] call FDC_fnc_saveMTO"; };
+  class Saved:FDC_Label { idc=9421; x=0.22; y=0.60; w=0.18; text="Rogzitve"; };
   class Adjust:FDC_Button { x=0.38; y=0.60; text="Javitas"; onButtonClick="createDialog 'FDC_AdjustmentDialog';"; };
-  class AdjustFire:FDC_Button { x=0.54; y=0.67; text="Beloves"; onButtonClick="['BELOVES'] call FDC_fnc_executeMTOFire;"; };
-  class FFE:FDC_Button { x=0.54; y=0.74; text="Hatastuz"; onButtonClick="['HATASTUZ'] call FDC_fnc_executeMTOFire;"; };
+  class AdjustFire:FDC_Button { idc=9422; x=0.54; y=0.67; text="Beloves"; onButtonClick="['BELOVES'] call FDC_fnc_executeMTOFire;"; };
+  class FFE:FDC_Button { idc=9423; x=0.54; y=0.74; text="Hatastuz"; onButtonClick="['HATASTUZ'] call FDC_fnc_executeMTOFire;"; };
   class EndMission:FDC_Button { x=0.22; y=0.74; w=0.28; text="Tuzfeladat vege"; onButtonClick="createDialog 'FDC_ObserverReportDialog';"; };
  };
 };
