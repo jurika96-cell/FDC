@@ -2,7 +2,14 @@ disableSerialization;
 params [["_display", displayNull, [displayNull]]];
 if (isNull _display) exitWith {false};
 
-private _azMils = parseNumber ctrlText (_display displayCtrl 9510);
+// An explicit 0 (north) is valid; an empty field must not become 0.
+private _azInput = ctrlText (_display displayCtrl 9510);
+private _digits = toArray _azInput;
+if ((count _digits) == 0 || {(count _digits) > 4} || {(_digits findIf {_x < 48 || {_x > 57}}) >= 0}) exitWith {
+    hint "Iranyszog: 0000-6399 mils. Az ures mezo nem ervenyes.";
+    false
+};
+private _azMils = parseNumber _azInput;
 private _lateral = abs parseNumber ctrlText (_display displayCtrl 9512);
 private _range = abs parseNumber ctrlText (_display displayCtrl 9514);
 private _lr = (_display displayCtrl 9511) lbText (lbCurSel (_display displayCtrl 9511));
