@@ -77,6 +77,7 @@ private _minETA = 1e10;
 } forEach _selectedGuns;
 
 missionNamespace setVariable ["FDC_MTOSelectedGroup", _groupIndex];
+missionNamespace setVariable ["FDC_MTOSelectedGroupName", _combo lbText _sel];
 missionNamespace setVariable ["FDC_MTOTargetPosition", _target];
 missionNamespace setVariable ["FDC_MTOGunSolutions", _solutions];
 
