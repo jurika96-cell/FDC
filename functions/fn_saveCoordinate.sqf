@@ -1,6 +1,6 @@
 disableSerialization;
 params [["_display", displayNull, [displayNull]]];
-if (isNull _display) exitWith {};
+if (isNull _display) exitWith {false};
 private _combo = _display displayCtrl 9210;
 private _values = [];
 { _values pushBack ctrlText (_display displayCtrl _x); } forEach [9230,9231,9232,9233,9234,9235];
@@ -32,3 +32,4 @@ if ((missionNamespace getVariable ["FDC_missionType", ""]) isEqualTo "Tuzathelye
 
 // Saving must not initialize another display. Its own onLoad handles that.
 diag_log format ["[FDC FIX 20261006-B] saveCoordinate mission=%1 values=%2", missionNamespace getVariable ["FDC_missionType", "<unset>"], _values];
+true
