@@ -108,7 +108,7 @@ class FDC_FireReportDialog {
  class controls {
   class Title:FDC_Title { text="TUZFELADAT NAPLO - ELLENORZES"; };
   class Report:FDC_Edit { idc=9710; x=0.22; y=0.25; w=0.54; h=0.42; style=16; canModify=0; };
-  class Back:FDC_Button { x=0.40; y=0.74; w=0.15; text="BDA javitas"; onButtonClick="closeDialog 0; createDialog 'FDC_ObserverReportDialog';"; };
-  class Save:FDC_Button { x=0.57; y=0.74; w=0.20; text="Mentes es zaras"; onButtonClick="[] call FDC_fnc_finalizeFireMission;"; };
+  class Back:FDC_Button { x=0.38; y=0.74; w=0.17; text="Bezaras"; onButtonClick="[false] call FDC_fnc_finalizeFireMission;"; };
+  class Save:FDC_Button { x=0.57; y=0.74; w=0.20; text="Mentes es zaras"; onButtonClick="[true] call FDC_fnc_finalizeFireMission;"; };
  };
 };
