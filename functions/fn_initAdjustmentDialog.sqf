@@ -13,6 +13,7 @@ private _az = missionNamespace getVariable ["FDC_adjustmentObserverAzimuth", -1]
 if (_az < 0) then {
     private _mode = missionNamespace getVariable ["FDC_locationMode", ""];
     private _v = missionNamespace getVariable ["FDC_locationValues", []];
+    if (_mode isEqualTo "Koordinata" && {count _v > 3}) then {_az = parseNumber (_v select 3);};
     if (_mode isEqualTo "Polaris" && {count _v > 2}) then {_az = parseNumber (_v select 2);};
     if (_mode isEqualTo "Ismert pont" && {count _v > 5}) then {_az = parseNumber (_v select 5);};
 };
